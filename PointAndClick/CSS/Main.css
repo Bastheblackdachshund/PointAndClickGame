@@ -1,0 +1,46 @@
+body {
+    background-color: rgb(96, 66, 20);
+    display: grid;
+    grid-template-columns: auto 800px auto;
+    grid-template-rows: 100px 600px 100px;
+    gap: 20px;
+    margin: 0px;
+}
+#mainTitle {
+    grid-column-start: 2;
+    grid-row-start: 1;
+    text-align: center;
+}
+
+#gameWindow {
+    grid-column-start: 2;
+    grid-row-start: 2;
+
+}
+.Container{
+    position: relative;
+    justify-content: center;
+    margin-top: 2%;
+}
+.Portrait{
+    position: absolute;
+    margin-top: -63px;
+    margin-left: 700px;
+}
+.bottem{
+    position: absolute;
+    height: 10px;
+    width: 800px;
+    background-color: brown;
+    margin-top: -5px;
+}
+.inventory{
+    position: relative;
+    height: 200px;
+    width: 250px;
+    background-color: rgba(165, 42, 42, 0.445);
+    grid-column-start: 2;
+    grid-row-start: 2;
+    top: 10px;
+    left: 10px;
+}
