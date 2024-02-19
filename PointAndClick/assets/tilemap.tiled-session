@@ -1,0 +1,49 @@
+{
+    "Map/SizeTest": {
+        "height": 4300,
+        "width": 2
+    },
+    "activeFile": "naamloos.tmx",
+    "expandedProjectPaths": [
+        "."
+    ],
+    "fileStates": {
+        "naamloos.tmx": {
+            "scale": 0.48924999999999996,
+            "selectedLayer": 1,
+            "viewCenter": {
+                "x": 454.777721001533,
+                "y": 305.56974961676036
+            }
+        },
+        "naamloos.tmx#Grass": {
+            "scaleInDock": 1
+        },
+        "naamloos.tmx#Grass dirt": {
+            "scaleInDock": 1
+        },
+        "naamloos.tmx#PyramidMaya": {
+            "scaleInDock": 1
+        },
+        "naamloos.tmx#PyramidMaya2": {
+            "scaleInDock": 1
+        },
+        "naamloos.tmx#Tree": {
+            "scaleInDock": 1
+        },
+        "naamloos.tmx#lunar1b_tileset_visual": {
+            "scaleInDock": 1
+        }
+    },
+    "map.height": 19,
+    "map.lastUsedFormat": "tmx",
+    "map.width": 25,
+    "openFiles": [
+        "naamloos.tmx"
+    ],
+    "project": "tilemap.tiled-project",
+    "recentFiles": [
+        "naamloos.tmx"
+    ],
+    "tileset.embedInMap": true
+}

@@ -82,6 +82,33 @@ p {
     transition: all 0.5s ease-in-out;
 }
 
+#key1 {
+    width: 30px;
+    height: 30px;
+    background-color: #767676;
+    top: 170px;
+    left: 420px;
+    transition: all 0.5s ease-in-out;
+}
+
+#door2 {
+    width: 64px;
+    height: 64px;
+    background-color: #442c1c;
+    top: 300px;
+    left: 80px;
+    transition: all 0.5s ease-in-out;
+}
+
+#key2 {
+    width: 30px;
+    height: 30px;
+    background-color: #8d5900;
+    top: 500px;
+    left: 300px;
+    transition: all 0.5s ease-in-out;
+}
+
 #sign {
     width: 70px;
     height: 30px;
