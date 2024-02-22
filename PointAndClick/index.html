@@ -8,6 +8,11 @@
     <link rel="preconnect" href="https://fonts.googleapis.com">
     <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
     <link href="https://fonts.googleapis.com/css2?family=Honk&display=swap" rel="stylesheet">
+    <link rel="preconnect" href="https://fonts.googleapis.com">
+    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+    <link
+        href="https://fonts.googleapis.com/css2?family=Amiri:ital,wght@0,400;0,700;1,400;1,700&family=Workbench&display=swap"
+        rel="stylesheet">
     <title>point and click adventure</title>
 </head>
 
@@ -19,9 +24,10 @@
         <!--dialog bar-->
         <div id="dialogBar" class="foreground">
             <div id="setMainDialog">
-                <div id="mainCharacterSpeech" class="foreground"></div>
-
-                <div id="counterSpeech" class="foreground"></div>
+                <div id="mainCharacterAvatar" class="foreground"> <img src="assets/Icons/portairt.png"></div>
+                <div id="mainCharacterSpeech" class="foreground speech-bubble">...</div>
+                <div id="counterAvatar" class="foreground"><img src="assets/Icons/portairStatue.png"></div>
+                <div id="counterSpeech" class="foreground speech-bubble">...</div>
                 <div id="brownBar"></div>
             </div>
         </div>
@@ -39,8 +45,10 @@
         <div id="key2" class="foreground"></div>
         <div id="door2" class="foreground"></div>
         <div id="sign" class="foreground"></div>
+        <div id="statue" class="foreground"></div>
         <!-- character -->
         <div id="maincharacter" class="herocharacter">
+            <img src="assets/Animations/animated-character-1-idle.gif">
         </div>
         <div id="tilemap" class="background">
             <img src="assets/BackGround/map.png" draggable="false">
