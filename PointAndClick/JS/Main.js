@@ -4,6 +4,11 @@ document.getElementById("mainTitle").innerText = "Point & Click Adventure";
 //game window reference
 const gameWindow = document.getElementById("gameWindow");
 
+gameState = {
+    "unlocked1": false,
+    "inventory": [
+    ]
+}
 //main character
 const maincharacter = document.getElementById("maincharacter");
 const offsetcharacter = 15;
@@ -19,9 +24,8 @@ const sec = 1000;
 
 gameWindow.onclick = function (e) {
     var rect = gameWindow.getBoundingClientRect();
-    var x = e.clientX - rect.left
-    var y = e.clientY - rect.top
-    var unlocked1 = false
+    var x = e.clientX - rect.left;
+    var y = e.clientY - rect.top;
     console.log(e.target.id);
     if (e.target.id == "maincharacter") {
     }
@@ -49,32 +53,34 @@ gameWindow.onclick = function (e) {
             if (document.getElementById("invbkey") == null) {
                 sign.style.opacity = 1;
                 door1.style.opacity = 1;
+                console.log('1')
             }
-            else if (unlocked1 == true) {
+            else if (gameState.unlocked1 == false) {
+                gameState.unlocked1 = true;
                 door2.style.opacity = 0.5;
                 sign.style.opacity = 1;
                 door1.style.opacity = 1;
+                keyElement.id = "invbkey".remove();
+                keyElement.innerText = "BronzeKey".remove();
+                // remove item from inv
+                console.log('2')
+
             }
             else {
                 door2.style.opacity = 0.5;
-                unlocked1 = true;
                 sign.style.opacity = 1;
                 door1.style.opacity = 1;
-                document.getElementById("invbkey").remove();
-                keyElement.id = "invbkey".remove();
-                keyElement.innerText = "BronzeKey".remove();
+                console.log('3')
 
             }
             break;
         case "key2":
-            if (document.getElementById("key2") !== null) {
-                document.getElementById("key2").remove();
-                console.log("keyfound");
-                const keyElement = document.createElement("li");
-                keyElement.id = "invbkey";
-                keyElement.innerText = "BronzeKey";
-                inventoryList.appendChild(keyElement);
-            }
+            console.log("keyfound");
+            document.getElementById("key2").remove();
+            const keyElement = document.createElement("li");
+            keyElement.id = "invbkey";
+            keyElement.innerText = "BronzeKey";
+            inventoryList.appendChild(keyElement);
 
             break;
 
@@ -83,7 +89,6 @@ gameWindow.onclick = function (e) {
             sign.style.opacity = 0.5;
             door1.style.opacity = 1;
             door2.style.opacity = 1;
-            showme();
             break;
 
         case "statue":
@@ -112,7 +117,7 @@ function showme(targetBalloon, message) {
     setTimeout(hideme, 5 * sec, targetBalloon);
 }
 
-setTimeout(showme, 0 * sec, maincharacterSpeech, "you cock sucker");
+setTimeout(showme, 0 * sec, maincharacterSpeech, "*speaks spanish*");
 
 /**
  * 
@@ -120,4 +125,36 @@ setTimeout(showme, 0 * sec, maincharacterSpeech, "you cock sucker");
  */
 function hideme(targetBalloon) {
     targetBalloon.style.opacity = "0";
+}
+/**
+* function to change inventory
+* @param {string} itemName 
+* @param {string} action "add", "delete"
+* @returns 
+*/
+function changeInventory(itemName, action) {
+    if (itemName == null || action == null) {
+        console.log('wrong parameters given to changeInventory()');
+        return
+    }
+
+    switch (action) {
+        case 'add':
+            gameState.inventory.push(itemName);
+            break
+        case 'delete':
+            gameState.inventory.find(function (item, index) {
+                if (item == itemName) {
+                    var index = gameState.inventory.indexOf(item);
+                    if (index !== -1) {
+                        gameState.inventory.splice(index, 1);
+                    }
+                }
+            })
+            break
+
+        default:
+            break;
+    }
+    updateInventory(gameState.inventory, inventoryList);
 }
