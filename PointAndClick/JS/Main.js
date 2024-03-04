@@ -1,5 +1,5 @@
 //text
-document.getElementById("mainTitle").innerText = "Point & Click Adventure";
+document.getElementById("mainTitle").innerText = "Stranded";
 
 //game window reference
 const gameWindow = document.getElementById("gameWindow");
@@ -35,8 +35,8 @@ gameWindow.onclick = function (e) {
     }
 
     switch (e.target.id) {
-        case "door1":
-            door1.style.opacity = 0.5;
+        case "door1imgclosed":
+            door1imgclosed.style.opacity = 0.5;
             door2.style.opacity = 1;
             sign.style.opacity = 1;
             if (document.getElementById("key1") !== null) {
@@ -50,37 +50,34 @@ gameWindow.onclick = function (e) {
 
             break;
         case "door2":
-            if (document.getElementById("invbkey") == null) {
-                sign.style.opacity = 1;
-                door1.style.opacity = 1;
-                console.log('1')
-            }
-            else if (gameState.unlocked1 == false) {
-                gameState.unlocked1 = true;
-                door2.style.opacity = 0.5;
-                sign.style.opacity = 1;
-                door1.style.opacity = 1;
-                keyElement.id = "invbkey".remove();
-                keyElement.innerText = "BronzeKey".remove();
-                // remove item from inv
-                console.log('2')
+            if (gameState.unlocked1 == false) {
+                // check if we have key
+                if (document.getElementById("inv-key") !== null) {
+                    //yes -> unlock door?
+                    gameState.unlocked1 = true;
+                    changeInventory('key', 'delete');
+                    console.log('Door unlocked!');
+                    door2.style.opacity = 0;
 
-            }
-            else {
-                door2.style.opacity = 0.5;
-                sign.style.opacity = 1;
+                } else {
+                    //no -> alert 'door locked'
+                    alert("Door is locked!");
+                }
+            } else {
+                console.log('enter building');
+                door2.style.opacity = 0;
                 door1.style.opacity = 1;
-                console.log('3')
-
+                sign.style.opacity = 1;
             }
+
             break;
         case "key2":
-            console.log("keyfound");
-            document.getElementById("key2").remove();
-            const keyElement = document.createElement("li");
-            keyElement.id = "invbkey";
-            keyElement.innerText = "BronzeKey";
-            inventoryList.appendChild(keyElement);
+            if (document.getElementById("key2") !== null) {
+                key2.style.opacity = 0;
+                console.log('Found key!');
+                document.getElementById("key2").remove();
+                changeInventory('key', 'add');
+            }
 
             break;
 
@@ -157,4 +154,17 @@ function changeInventory(itemName, action) {
             break;
     }
     updateInventory(gameState.inventory, inventoryList);
+    /**
+    * @param {Array} inventory array of items 
+    * @param {HTMLElement} inventoryList html <ul> element 
+    */
+    function updateInventory(inventory, inventoryList) {
+        inventoryList.innerHTML = '';
+        inventory.forEach(function (item) {
+            const inventoryItem = document.createElement("li");
+            inventoryItem.id = "inv-" + item;
+            inventoryItem.innerText = item;
+            inventoryList.appendChild(inventoryItem);
+        })
+    }
 }

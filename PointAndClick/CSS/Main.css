@@ -73,9 +73,8 @@ p {
 
 /* foreground items */
 #door1 {
-    width: 64px;
-    height: 64px;
-    background-color: #442c1c;
+    width: 16px;
+    height: 16px;
     top: 150px;
     left: 400px;
     transition: all 0.5s ease-in-out;
@@ -105,7 +104,6 @@ p {
     background-color: #8d5900;
     top: 500px;
     left: 300px;
-    transition: all 0.5s ease-in-out;
 }
 
 #sign {
@@ -130,8 +128,9 @@ p {
 #mainCharacterAvatar {
     left: 0px;
     bottom: 0px;
-    width: 100px;
-    height: 68px;
+    width: 13.5px;
+    height: 26.5px;
+    scale: 5;
 }
 
 #mainCharacterSpeech {
