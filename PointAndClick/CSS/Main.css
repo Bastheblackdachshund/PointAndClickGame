@@ -75,10 +75,11 @@ p {
 #door1 {
     width: 16px;
     height: 16px;
-    top: 150px;
-    left: 400px;
+    top: 78px;
+    left: 664px;
     transition: all 0.5s ease-in-out;
 }
+
 
 #key1 {
     width: 30px;
@@ -106,14 +107,14 @@ p {
     left: 300px;
 }
 
-#sign {
-    width: 70px;
+#inside {
+    width: 30px;
     height: 30px;
-    background-color: #442c1c;
-    top: 450px;
-    left: 10px;
-    transition: all 0.5s ease-in-out;
+    background-color: #8d5900;
+    top: 500px;
+    left: 300px;
 }
+
 
 #statue {
     width: 32px;

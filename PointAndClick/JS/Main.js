@@ -22,6 +22,10 @@ const inventorybox = document.getElementById("inventoryBox");
 const inventoryList = document.getElementById("inventoryList");
 const sec = 1000;
 
+//KEYS
+const key1 = document.getElementById("key1");
+const key2 = document.getElementById("key2");
+
 gameWindow.onclick = function (e) {
     var rect = gameWindow.getBoundingClientRect();
     var x = e.clientX - rect.left;
@@ -33,29 +37,33 @@ gameWindow.onclick = function (e) {
         maincharacter.style.left = x - offsetcharacter + "px";
         maincharacter.style.top = y - offsetcharacter + "px";
     }
-
     switch (e.target.id) {
-        case "door1imgclosed":
-            door1imgclosed.style.opacity = 0.5;
-            door2.style.opacity = 1;
-            sign.style.opacity = 1;
-            if (document.getElementById("key1") !== null) {
-                document.getElementById("key1").remove();
-                console.log("keyfound");
-                const keyElement = document.createElement("li");
-                keyElement.id = "invskey";
-                keyElement.innerText = "SilverKey";
-                inventoryList.appendChild(keyElement);
-            }
+        case "door1open":
+            if (gameState.unlocked1 == false) {
+                // check if we have key
+                if (document.getElementById("inv-Bronze Key") !== null) {
+                    //yes -> unlock door?
+                    gameState.unlocked1 = true;
+                    changeInventory('Bronze Key', 'delete');
+                    console.log('Door unlocked!');
+                    door1open.style.opacity = 0;
 
+                } else {
+                    //no -> alert 'door locked'
+                    alert("Door is locked! You will need the bronze key.");
+                }
+            } else {
+                console.log('enter building');
+                door1open.style.opacity = 0;
+            }
             break;
         case "door2":
             if (gameState.unlocked1 == false) {
                 // check if we have key
-                if (document.getElementById("inv-key") !== null) {
+                if (document.getElementById("inv-Silver Key") !== null) {
                     //yes -> unlock door?
                     gameState.unlocked1 = true;
-                    changeInventory('key', 'delete');
+                    changeInventory('Silver Key', 'delete');
                     console.log('Door unlocked!');
                     door2.style.opacity = 0;
 
@@ -66,28 +74,29 @@ gameWindow.onclick = function (e) {
             } else {
                 console.log('enter building');
                 door2.style.opacity = 0;
-                door1.style.opacity = 1;
-                sign.style.opacity = 1;
+                door1open.style.opacity = 1;
+            }
+
+            break;
+        case "key1":
+            if (key1 !== null) {
+                door1open.style.opacity = 1;
+                door2.style.opacity = 1;
+                console.log('Found key!');
+                key1.remove();
+                changeInventory('Silver Key', 'add');
             }
 
             break;
         case "key2":
-            if (document.getElementById("key2") !== null) {
-                key2.style.opacity = 0;
+            if (key2 !== null) {
+                door1open.style.opacity = 1;
+                door2.style.opacity = 1;
                 console.log('Found key!');
-                document.getElementById("key2").remove();
-                changeInventory('key', 'add');
+                key2.remove();
+                changeInventory('Bronze Key', 'add');
             }
-
             break;
-
-
-        case "sign":
-            sign.style.opacity = 0.5;
-            door1.style.opacity = 1;
-            door2.style.opacity = 1;
-            break;
-
         case "statue":
             showme(mainCharacterSpeech, "Hello Mister Maya Moon Man Sir Could You Tell Me How I Can Get Out Of Here?")
             setTimeout(function () { counteravatar.style.opacity = 1; }, 5 * sec);
@@ -97,9 +106,8 @@ gameWindow.onclick = function (e) {
             break;
 
         default:
-            door1.style.opacity = 1;
-            sign.style.opacity = 1;
             door2.style.opacity = 1;
+            door1open.style.opacity = 1;
             break;
     }
 }
