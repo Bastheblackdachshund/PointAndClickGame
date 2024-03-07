@@ -65,8 +65,8 @@ p {
 }
 
 #maincharacter {
-    width: 72px;
-    height: 72px;
+    width: 23px;
+    height: 24px;
     left: 400px;
     top: 304px;
 }
@@ -80,14 +80,22 @@ p {
     transition: all 0.5s ease-in-out;
 }
 
-
-#key1 {
+#chestopen {
     width: 30px;
     height: 30px;
     background-color: #767676;
-    top: 170px;
-    left: 420px;
-    transition: all 0.5s ease-in-out;
+    top: 300px;
+    left: 200px;
+    scale: 1;
+}
+
+#chestclosed {
+    width: 30px;
+    height: 30px;
+    background-color: #767676;
+    top: 257px;
+    left: 161px;
+    scale: 1;
 }
 
 #door2 {
@@ -102,17 +110,18 @@ p {
 #key2 {
     width: 30px;
     height: 30px;
-    background-color: #8d5900;
+    background-color: #834e00;
     top: 500px;
-    left: 300px;
+    left: 200px;
 }
 
 #inside {
-    width: 30px;
-    height: 30px;
-    background-color: #8d5900;
-    top: 500px;
-    left: 300px;
+    width: 61px;
+    height: 80px;
+    top: 15px;
+    left: 642px;
+    opacity: 0;
+    transition: all 0.5s ease-in-out;
 }
 
 
@@ -164,7 +173,7 @@ p {
 /* classes start here */
 .foreground {
     position: absolute;
-    z-index: 1000;
+    z-index: 100;
 }
 
 /* background */
@@ -175,7 +184,7 @@ p {
 
 .herocharacter {
     position: absolute;
-    z-index: 100;
+    z-index: 1000;
     transition: all 1s ease-in-out;
 }
 

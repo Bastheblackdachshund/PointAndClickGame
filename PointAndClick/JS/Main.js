@@ -5,6 +5,7 @@ document.getElementById("mainTitle").innerText = "Stranded";
 const gameWindow = document.getElementById("gameWindow");
 
 gameState = {
+    "inside": false,
     "unlocked1": false,
     "inventory": [
     ]
@@ -47,6 +48,8 @@ gameWindow.onclick = function (e) {
                     changeInventory('Bronze Key', 'delete');
                     console.log('Door unlocked!');
                     door1open.style.opacity = 0;
+                    inside.style.opacity = 1;
+                    gameState.inside = true;
 
                 } else {
                     //no -> alert 'door locked'
@@ -55,7 +58,15 @@ gameWindow.onclick = function (e) {
             } else {
                 console.log('enter building');
                 door1open.style.opacity = 0;
+                inside.style.opacity = 1;
+                gameState.inside = true;
             }
+            break;
+        case "insideblock":
+            if (gameState.inside == false) {
+                inside.style.opacity = 0;
+            }
+            else { inside.style.opacity = 1; }
             break;
         case "door2":
             if (gameState.unlocked1 == false) {
@@ -66,6 +77,7 @@ gameWindow.onclick = function (e) {
                     changeInventory('Silver Key', 'delete');
                     console.log('Door unlocked!');
                     door2.style.opacity = 0;
+                    gameState.inside = false;
 
                 } else {
                     //no -> alert 'door locked'
@@ -75,13 +87,17 @@ gameWindow.onclick = function (e) {
                 console.log('enter building');
                 door2.style.opacity = 0;
                 door1open.style.opacity = 1;
+                gameState.inside = false;
+                inside.style.opacity = 0;
             }
 
             break;
         case "key1":
-            if (key1 !== null) {
+            if (document.getElementById("inv-Bronze Key") !== null) {
                 door1open.style.opacity = 1;
                 door2.style.opacity = 1;
+                inside.style.opacity = 0;
+                gameState.inside = false;
                 console.log('Found key!');
                 key1.remove();
                 changeInventory('Silver Key', 'add');
@@ -89,11 +105,14 @@ gameWindow.onclick = function (e) {
 
             break;
         case "key2":
-            if (key2 !== null) {
+            if (key2 !== null !== null) {
                 door1open.style.opacity = 1;
                 door2.style.opacity = 1;
+                gameState.inside = false;
+                inside.style.opacity = 0;
                 console.log('Found key!');
                 key2.remove();
+                changeInventory('Silver Key', 'delete');
                 changeInventory('Bronze Key', 'add');
             }
             break;
@@ -108,6 +127,8 @@ gameWindow.onclick = function (e) {
         default:
             door2.style.opacity = 1;
             door1open.style.opacity = 1;
+            gameState.inside = false;
+            inside.style.opacity = 0;
             break;
     }
 }
