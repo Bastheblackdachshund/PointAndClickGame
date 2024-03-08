@@ -39,36 +39,14 @@ gameWindow.onclick = function (e) {
         maincharacter.style.top = y - offsetcharacter + "px";
     }
     switch (e.target.id) {
+        case "shrineid":
+            if (gameState.inside == true) {
+                alert("Beam me up, Scotty");
+                location.reload();
+            }
+            else { }
+            break;
         case "door1open":
-            if (gameState.unlocked1 == false) {
-                // check if we have key
-                if (document.getElementById("inv-Bronze Key") !== null) {
-                    //yes -> unlock door?
-                    gameState.unlocked1 = true;
-                    changeInventory('Bronze Key', 'delete');
-                    console.log('Door unlocked!');
-                    door1open.style.opacity = 0;
-                    inside.style.opacity = 1;
-                    gameState.inside = true;
-
-                } else {
-                    //no -> alert 'door locked'
-                    alert("Door is locked! You will need the bronze key.");
-                }
-            } else {
-                console.log('enter building');
-                door1open.style.opacity = 0;
-                inside.style.opacity = 1;
-                gameState.inside = true;
-            }
-            break;
-        case "insideblock":
-            if (gameState.inside == false) {
-                inside.style.opacity = 0;
-            }
-            else { inside.style.opacity = 1; }
-            break;
-        case "door2":
             if (gameState.unlocked1 == false) {
                 // check if we have key
                 if (document.getElementById("inv-Silver Key") !== null) {
@@ -76,59 +54,59 @@ gameWindow.onclick = function (e) {
                     gameState.unlocked1 = true;
                     changeInventory('Silver Key', 'delete');
                     console.log('Door unlocked!');
-                    door2.style.opacity = 0;
-                    gameState.inside = false;
+                    door1open.style.opacity = 0;
+                    inside.style.opacity = 1;
+                    shrine.style.opacity = 1;
+                    gameState.inside = true;
 
                 } else {
                     //no -> alert 'door locked'
-                    alert("Door is locked!");
+                    alert("Door is locked! You will need the silver key.");
                 }
             } else {
                 console.log('enter building');
-                door2.style.opacity = 0;
-                door1open.style.opacity = 1;
-                gameState.inside = false;
-                inside.style.opacity = 0;
+                door1open.style.opacity = 0;
+                inside.style.opacity = 1;
+                shrine.style.opacity = 1;
+                gameState.inside = true;
             }
-
+            break;
+        case "insideblock":
+            if (gameState.inside == false) {
+                inside.style.opacity = 0;
+                shrine.style.opacity = 0;
+            }
+            else { inside.style.opacity = 1; shrine.style.opacity = 1; }
             break;
         case "key1":
             if (document.getElementById("inv-Bronze Key") !== null) {
                 door1open.style.opacity = 1;
-                door2.style.opacity = 1;
                 inside.style.opacity = 0;
+                shrine.style.opacity = 0;
                 gameState.inside = false;
                 console.log('Found key!');
                 key1.remove();
+                changeInventory('Bronze Key', 'delete');
                 changeInventory('Silver Key', 'add');
+                chestopen.style.opacity = 1;
             }
-
-            break;
-        case "key2":
-            if (key2 !== null !== null) {
-                door1open.style.opacity = 1;
-                door2.style.opacity = 1;
-                gameState.inside = false;
-                inside.style.opacity = 0;
-                console.log('Found key!');
-                key2.remove();
-                changeInventory('Silver Key', 'delete');
-                changeInventory('Bronze Key', 'add');
-            }
+            else { alert("Chest is locked! find the key") }
             break;
         case "statue":
-            showme(mainCharacterSpeech, "Hello Mister Maya Moon Man Sir Could You Tell Me How I Can Get Out Of Here?")
+            showme(mainCharacterSpeech, "hello im lost here do you know how i could get back to my planet?")
             setTimeout(function () { counteravatar.style.opacity = 1; }, 5 * sec);
-            setTimeout(showme, 5 * sec, counterSpeech, "⍦⌾⌰ ⍧⍲☊⍑ ⌰☊⟄ℇ☈⎎⍑⍲☊⟄ ⍓ℇ ⏙⟟⍑ℍ⌾⌰⍑ ⍑ℍ⟟⎎ ⟄ℇ⍻⟟⍧ℇ ℍℇ☈ℇ ℍ⍲⍻ℇ ⍓⍦ ⌾⎾⟄ ⌾☊ℇ");
-            setTimeout(showme, 10 * sec, mainCharacterSpeech, "oh is oke");
-            setTimeout(function () { counteravatar.style.opacity = 0; }, 15 * sec);
+            setTimeout(showme, 5 * sec, counterSpeech, "I Am Groot (yes you must find the shrine in the temple with the closed door.)");
+            setTimeout(function () { changeInventory('Bronze Key', 'add') }, 10 * sec);
+            setTimeout(showme, 11 * sec, counterSpeech, "I Am Groot (i do not know how to open it but i do have a key for you.)");
+            setTimeout(showme, 16 * sec, mainCharacterSpeech, "Thank you for the help.");
+            setTimeout(function () { counteravatar.style.opacity = 0; }, 16 * sec);
             break;
 
         default:
-            door2.style.opacity = 1;
             door1open.style.opacity = 1;
             gameState.inside = false;
             inside.style.opacity = 0;
+            shrine.style.opacity = 0;
             break;
     }
 }
